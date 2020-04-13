@@ -11,7 +11,7 @@ const TournamentsList = ({ tournaments }: IProps) => {
   return (
     <div>
       {tournaments.map((tournament: ITournament) => (
-        <Tournament tournament={tournament} />
+        <Tournament tournament={tournament} key={tournament.id} />
       ))}
     </div>
   );

@@ -25,6 +25,22 @@ export const fetchAllTournaments = () => async (dispatch: Dispatch) => {
   }
 };
 
+export const searchTournament = (query: string) => async (
+  dispatch: Dispatch
+) => {
+  const URL = `${API_TOURNAMENTS_URL}?q=${query}`;
+  try {
+    const { data: tournaments } = await axios.get(URL);
+    console.log(tournaments);
+    dispatch({
+      type: TournamentActions.SEARCH_TOURNAMENT,
+      payload: tournaments
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 export const createTournament = (name: string) => async (
   dispatch: Dispatch
 ) => {

@@ -35,6 +35,11 @@ export default function tournaments(
         tournaments: null,
         error: action.payload
       };
+    case TournamentActions.SEARCH_TOURNAMENT:
+      return {
+        ...state,
+        tournaments: action.payload
+      };
     case TournamentActions.CREATE_TOURNAMENT:
       const tournaments = state.tournaments || [];
       return {
