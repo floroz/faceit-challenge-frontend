@@ -47,7 +47,7 @@ const Tournaments = ({
   const [searchInput, setSearchInput] = React.useState('');
 
   const throttleSearchTournament = React.useCallback(
-    throttle((query: string) => searchTournament(query), 750),
+    throttle((query: string) => searchTournament(query), 1500),
     []
   );
 
@@ -93,6 +93,8 @@ const Tournaments = ({
         onEdit={editTournament}
       />
     );
+  } else if (!loading && !error && tournaments?.length === 0) {
+    render = <H6>No Results.</H6>;
   }
 
   return (
