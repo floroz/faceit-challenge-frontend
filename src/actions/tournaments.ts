@@ -11,7 +11,6 @@ export const fetchAllTournaments = () => async (dispatch: Dispatch) => {
       type: TournamentActions.FETCH_ALL_TOURNAMENT_START
     });
     const { data: tournaments } = await axios.get(API_TOURNAMENTS_URL);
-    console.log(tournaments);
     dispatch({
       type: TournamentActions.FETCH_ALL_TOURNAMENT_SUCCESS,
       payload: tournaments
@@ -31,7 +30,6 @@ export const searchTournament = (query: string) => async (
   const URL = `${API_TOURNAMENTS_URL}?q=${query}`;
   try {
     const { data: tournaments } = await axios.get(URL);
-    console.log(tournaments);
     dispatch({
       type: TournamentActions.SEARCH_TOURNAMENT,
       payload: tournaments
@@ -46,7 +44,6 @@ export const createTournament = (name: string) => async (
 ) => {
   try {
     const { data } = await axios.post(API_TOURNAMENTS_URL, { name });
-    console.log(data);
     dispatch({
       type: TournamentActions.CREATE_TOURNAMENT,
       payload: data
@@ -68,7 +65,6 @@ export const deleteTournament = (id: string) => async (dispatch: Dispatch) => {
   const URL = `${API_TOURNAMENTS_URL}/${id}`;
   try {
     const res = await axios.delete(URL);
-    console.log(res);
     dispatch({
       type: TournamentActions.DELETE_TOURNAMENT,
       payload: id
@@ -84,7 +80,6 @@ export const editTournament = (id: string, name: string) => async (
   const URL = `${API_TOURNAMENTS_URL}/${id}`;
   try {
     const { data: tournament } = await axios.patch(URL, { name });
-    console.log(tournament);
     dispatch({
       type: TournamentActions.EDIT_TOURNAMENT,
       payload: tournament
