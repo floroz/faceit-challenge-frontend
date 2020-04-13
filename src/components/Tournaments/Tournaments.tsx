@@ -14,7 +14,8 @@ import {
   errorTournamentSelector
 } from '../../selectors/tournaments';
 import { RootState } from '../../reducers';
-import { Container } from './Tournaments.styles';
+import { Container, Group, StyledError } from './Tournaments.styles';
+import H6 from '../H6';
 import SearchInput from '../SearchInput/SearchInput';
 import Button from '../Button/Button';
 
@@ -61,14 +62,19 @@ const Tournaments = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let render = null;
+  let render;
 
   if (error) {
-    render = <div>Error.. {error}</div>;
+    render = (
+      <StyledError>
+        <H6>Something Went Wrong...</H6>
+        <Button onClick={fetchAllTournaments}>Try Again</Button>
+      </StyledError>
+    );
   }
 
   if (loading) {
-    render = <div>Loading...</div>;
+    render = <H6>Loading...</H6>;
   }
 
   if (tournaments && tournaments.length > 0) {
@@ -77,8 +83,10 @@ const Tournaments = ({
 
   return (
     <Container>
-      <SearchInput value={searchInput} onChange={onChangeHandler} />
-      <Button onClick={onCreateTournament}>Create Tournament</Button>
+      <Group>
+        <SearchInput value={searchInput} onChange={onChangeHandler} />
+        <Button onClick={onCreateTournament}>Create Tournament</Button>
+      </Group>
       {render}
     </Container>
   );
