@@ -76,7 +76,7 @@ const Tournaments = ({
     render = (
       <StyledError>
         <H6>Something Went Wrong...</H6>
-        <Button onClick={fetchAllTournaments}>Try Again</Button>
+        <Button onClick={fetchAllTournaments}>RETRY</Button>
       </StyledError>
     );
   }
@@ -98,7 +98,11 @@ const Tournaments = ({
   return (
     <Container>
       <Group>
-        <SearchInput value={searchInput} onChange={onChangeHandler} />
+        <SearchInput
+          value={searchInput}
+          onChange={onChangeHandler}
+          placeholder="Search tournaments..."
+        />
         <Button onClick={onCreateTournament}>Create Tournament</Button>
       </Group>
       {render}

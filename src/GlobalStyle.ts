@@ -11,6 +11,11 @@ const GlobalStyle = createGlobalStyle`
     color: ${theme.palette.text.primary};
     ${theme.typography.body};
   }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export default GlobalStyle;

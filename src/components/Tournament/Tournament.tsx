@@ -17,6 +17,14 @@ const Tournament = ({ tournament, onDelete, onEdit }: IProps) => {
     onEdit(tournament.id, newName);
   };
 
+  const startDateLocale = new Date(tournament.startDate).toLocaleDateString(
+    'en-GB',
+    {
+      hour: '2-digit',
+      minute: '2-digit'
+    }
+  );
+
   return (
     <TournamentCard>
       <H6>{tournament.name}</H6>
@@ -25,7 +33,7 @@ const Tournament = ({ tournament, onDelete, onEdit }: IProps) => {
         {tournament.participants.current}/{tournament.participants.max}
       </p>
       <p>{tournament.organizer}</p>
-      <p>Start: {tournament.startDate}</p>
+      <p>Start: {startDateLocale}</p>
       <ButtonGroup>
         <Button onClick={editTournament}>Edit</Button>
         <Button onClick={() => onDelete(tournament.id)}>Delete</Button>
