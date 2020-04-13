@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
 import { ITournament } from '../../interfaces/interfaces';
 import TournamentsList from '../TournamentsList/TournamentsList';
 import {
@@ -9,7 +10,6 @@ import {
   deleteTournament,
   editTournament
 } from '../../actions/tournaments';
-import throttle from 'lodash.throttle';
 import {
   tournamentListSelector,
   loadingTournamentSelector,
@@ -46,15 +46,15 @@ const Tournaments = ({
 }: IProps) => {
   const [searchInput, setSearchInput] = React.useState('');
 
-  const throttleSearchTournament = React.useCallback(
-    throttle((query: string) => searchTournament(query), 1500),
+  const debouncedSearchTournament = React.useCallback(
+    debounce((query: string) => searchTournament(query), 500),
     []
   );
 
   const onChangeHandler = (e: { target: { value: string } }) => {
     setSearchInput(e.target.value);
 
-    throttleSearchTournament(e.target.value);
+    debouncedSearchTournament(e.target.value);
   };
 
   const onCreateTournament = () => {
