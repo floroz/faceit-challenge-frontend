@@ -5,7 +5,7 @@ import { TournamentActions } from '../enum/TournamentAction';
 import { API_TOURNAMENTS_URL } from '../constants/api';
 import { Dispatch } from 'redux';
 
-export const fetchAllTournaments = async (dispatch: Dispatch) => {
+export const fetchAllTournaments = () => async (dispatch: Dispatch) => {
   try {
     dispatch({
       type: TournamentActions.FETCH_ALL_TOURNAMENT_START
@@ -19,7 +19,8 @@ export const fetchAllTournaments = async (dispatch: Dispatch) => {
   } catch (error) {
     console.error(error.message);
     dispatch({
-      type: TournamentActions.FETCH_ALL_TOURNAMENT_ERROR
+      type: TournamentActions.FETCH_ALL_TOURNAMENT_ERROR,
+      payload: error.message
     });
   }
 };

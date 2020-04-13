@@ -1,15 +1,14 @@
 import React from 'react';
+import { ITournament } from '../../interfaces/interfaces';
 
 interface IProps {
-  // tournament: ITournament // ?
+  tournament: ITournament;
   // onEdit: () => void; // FROM REDUX
   // onDelete: () => void; // FROM REDUX
 }
 
-const Tournament = (props: IProps) => {
-  // receive a single tournament
-  // receive callbacks for edit and delete
-  return <div></div>;
+const Tournament = ({ tournament }: IProps) => {
+  return <div>{tournament.name}</div>;
 };
 
 export default Tournament;

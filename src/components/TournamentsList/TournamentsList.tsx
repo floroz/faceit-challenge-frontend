@@ -1,12 +1,20 @@
 import React from 'react';
+import { ITournament } from '../../interfaces/interfaces';
+import Tournament from '../Tournament/Tournament';
 
 interface IProps {
-  // tournaments: ITournament[]
+  tournaments: ITournament[];
 }
 
-const TournamentsList = (props: IProps) => {
+const TournamentsList = ({ tournaments }: IProps) => {
   // receives the tournaments list and render each tournament component
-  return <div>Tournaments.map</div>;
+  return (
+    <div>
+      {tournaments.map((tournament: ITournament) => (
+        <Tournament tournament={tournament} />
+      ))}
+    </div>
+  );
 };
 
 export default TournamentsList;
