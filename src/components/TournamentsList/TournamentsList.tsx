@@ -5,14 +5,20 @@ import { Grid } from './TournamentsList.styles';
 
 interface IProps {
   tournaments: ITournament[];
+  onDelete: (name: string) => void;
+  onEdit: (id: string, name: string) => void;
 }
 
-const TournamentsList = ({ tournaments }: IProps) => {
-  // receives the tournaments list and render each tournament component
+const TournamentsList = ({ tournaments, onDelete, onEdit }: IProps) => {
   return (
     <Grid>
       {tournaments.map((tournament: ITournament) => (
-        <Tournament tournament={tournament} key={tournament.id} />
+        <Tournament
+          tournament={tournament}
+          key={tournament.id}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
       ))}
     </Grid>
   );

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RootState } from '../reducers';
+// import { RootState } from '../reducers';
 import { ITournamentAction } from '../interfaces/interfaces';
 import { TournamentActions } from '../enum/TournamentAction';
 import { API_TOURNAMENTS_URL } from '../constants/api';

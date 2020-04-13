@@ -6,11 +6,17 @@ import Button from '../Button/Button';
 
 interface IProps {
   tournament: ITournament;
-  // onEdit: () => void; // FROM REDUX
-  // onDelete: () => void; // FROM REDUX
+  onEdit: (id: string, name: string) => void;
+  onDelete: (id: string) => void;
 }
 
-const Tournament = ({ tournament }: IProps) => {
+const Tournament = ({ tournament, onDelete, onEdit }: IProps) => {
+  const editTournament = () => {
+    const newName = prompt('Edit name');
+    if (!newName) return;
+    onEdit(tournament.id, newName);
+  };
+
   return (
     <TournamentCard>
       <H6>{tournament.name}</H6>
@@ -21,8 +27,8 @@ const Tournament = ({ tournament }: IProps) => {
       <p>{tournament.organizer}</p>
       <p>Start: {tournament.startDate}</p>
       <ButtonGroup>
-        <Button onClick={() => {}}>Edit</Button>
-        <Button onClick={() => {}}>Delete</Button>
+        <Button onClick={editTournament}>Edit</Button>
+        <Button onClick={() => onDelete(tournament.id)}>Delete</Button>
       </ButtonGroup>
     </TournamentCard>
   );

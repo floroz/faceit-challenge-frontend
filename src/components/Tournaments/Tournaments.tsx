@@ -5,7 +5,9 @@ import TournamentsList from '../TournamentsList/TournamentsList';
 import {
   fetchAllTournaments,
   createTournament,
-  searchTournament
+  searchTournament,
+  deleteTournament,
+  editTournament
 } from '../../actions/tournaments';
 import throttle from 'lodash.throttle';
 import {
@@ -19,19 +21,25 @@ import H6 from '../H6';
 import SearchInput from '../SearchInput/SearchInput';
 import Button from '../Button/Button';
 
-interface IProps {
+interface IPropsFromRedux {
   fetchAllTournaments: () => void;
   createTournament: (name: string) => void;
   searchTournament: (query: string) => void;
+  deleteTournament: (name: string) => void;
+  editTournament: (id: string, name: string) => void;
   loading: Boolean;
   error: null | string;
   tournaments: ITournament[] | null;
 }
 
+interface IProps extends IPropsFromRedux {}
+
 const Tournaments = ({
   fetchAllTournaments,
   createTournament,
   searchTournament,
+  editTournament,
+  deleteTournament,
   loading,
   error,
   tournaments
@@ -78,7 +86,13 @@ const Tournaments = ({
   }
 
   if (tournaments && tournaments.length > 0) {
-    render = <TournamentsList tournaments={tournaments} />;
+    render = (
+      <TournamentsList
+        tournaments={tournaments}
+        onDelete={deleteTournament}
+        onEdit={editTournament}
+      />
+    );
   }
 
   return (
@@ -101,7 +115,9 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = {
   fetchAllTournaments,
   createTournament,
-  searchTournament
+  searchTournament,
+  deleteTournament,
+  editTournament
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tournaments);
