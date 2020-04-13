@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import { RootState } from '../reducers';
 import { ITournamentAction } from '../interfaces/interfaces';
-import { TournamentActions } from '../enum/TournamentAction';
+import { TournamentActions } from '../enums/TournamentAction';
 import { API_TOURNAMENTS_URL } from '../constants/api';
 import { Dispatch } from 'redux';
 
@@ -29,12 +29,19 @@ export const searchTournament = (query: string) => async (
 ) => {
   const URL = `${API_TOURNAMENTS_URL}?q=${query}`;
   try {
+    dispatch({
+      type: TournamentActions.SEARCH_TOURNAMENT_START
+    });
     const { data: tournaments } = await axios.get(URL);
     dispatch({
-      type: TournamentActions.SEARCH_TOURNAMENT,
+      type: TournamentActions.SEARCH_TOURNAMENT_SUCCESS,
       payload: tournaments
     });
   } catch (error) {
+    dispatch({
+      type: TournamentActions.SEARCH_TOURNAMENT_FAIL,
+      payload: error.message
+    });
     console.error(error.message);
   }
 };

@@ -1,4 +1,4 @@
-import { TournamentActions } from '../enum/TournamentAction';
+import { TournamentActions } from '../enums/TournamentAction';
 
 export interface ITournament {
   id: string;

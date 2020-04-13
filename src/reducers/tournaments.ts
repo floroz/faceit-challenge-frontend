@@ -3,7 +3,7 @@ import {
   ITournamentAction,
   ITournament
 } from '../interfaces/interfaces';
-import { TournamentActions } from '../enum/TournamentAction';
+import { TournamentActions } from '../enums/TournamentAction';
 
 const initialState: ITournamentState = {
   tournaments: null,
@@ -35,10 +35,25 @@ export default function tournaments(
         tournaments: null,
         error: action.payload
       };
-    case TournamentActions.SEARCH_TOURNAMENT:
+    case TournamentActions.SEARCH_TOURNAMENT_START:
       return {
         ...state,
+        loading: true,
+        error: null,
+        tournaments: null
+      };
+    case TournamentActions.SEARCH_TOURNAMENT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
         tournaments: action.payload
+      };
+    case TournamentActions.SEARCH_TOURNAMENT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
       };
     case TournamentActions.CREATE_TOURNAMENT:
       const tournaments = state.tournaments || [];

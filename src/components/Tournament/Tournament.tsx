@@ -17,6 +17,12 @@ const Tournament = ({ tournament, onDelete, onEdit }: IProps) => {
     onEdit(tournament.id, newName);
   };
 
+  const deleteTournament = () => {
+    if (window.confirm('Are you sure you want to delete this tournament?')) {
+      onDelete(tournament.id);
+    }
+  };
+
   const startDateLocale = new Date(tournament.startDate).toLocaleDateString(
     'en-GB',
     {
@@ -36,7 +42,7 @@ const Tournament = ({ tournament, onDelete, onEdit }: IProps) => {
       <p>Start: {startDateLocale}</p>
       <ButtonGroup>
         <Button onClick={editTournament}>Edit</Button>
-        <Button onClick={() => onDelete(tournament.id)}>Delete</Button>
+        <Button onClick={deleteTournament}>Delete</Button>
       </ButtonGroup>
     </TournamentCard>
   );

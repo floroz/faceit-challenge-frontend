@@ -82,7 +82,7 @@ const Tournaments = ({
   }
 
   if (loading) {
-    render = <H6>Loading...</H6>;
+    render = <H6>Loading tournaments...</H6>;
   }
 
   if (tournaments && tournaments.length > 0) {
